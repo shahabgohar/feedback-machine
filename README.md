@@ -25,3 +25,5 @@
 - run npm run dev
 - please use the default url: http://localhost:5173/ to visit the site
 
+in case of any issue contect developer: shahab.developer.work@gmail.com
+
