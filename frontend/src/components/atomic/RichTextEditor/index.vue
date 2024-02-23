@@ -14,6 +14,7 @@ interface Props {
 }
 interface Emit {
   (e: 'update:model-value', val: any): void
+  (e: 'update:mentions', val: any): void
 }
 const props = withDefaults(defineProps<Props>(), {
   atValues: []
@@ -57,28 +58,22 @@ const mentionSetting = {
   }
 }
 
-onMounted(() => {
-  // const quil = quilEditorRef.value?.getQuill()
-  // quil.register('modules/mention', mentionSetting)
-  window.addEventListener(
-    'mention-hovered',
-    (event) => {
-      console.log('hovered: ', event)
-    },
-    false
-  )
-  window.addEventListener(
-    'mention-clicked',
-    (event) => {
-      console.log('hovered: ', event)
-    },
-    false
-  )
-})
+const editorElementRef: Ref<HTMLElement | null> = ref(null)
+const extractMentions = () => {
+  if (!(props.atValues.length > 0) || !editorElementRef.value) {
+    return
+  }
+  const mentionElements = editorElementRef.value.querySelectorAll('.mention')
+  const items = [...mentionElements].map((element) => {
+    return element.getAttribute('data-id')
+  })
+  console.log('emitting ', items)
+  emit('update:mentions', items)
+}
 </script>
 
 <template>
-  <div class="form-control h-full px-2">
+  <div class="form-control h-full">
     <label class="label" v-if="props.label">
       <span class="custom-label">
         {{ props.label }} <span v-if="props.required" class="text-red-600">*</span>
@@ -86,6 +81,7 @@ onMounted(() => {
     </label>
     <div
       class="editor overflow-y-scroll pb-1 pt-1"
+      ref="editorElementRef"
       :class="{
         'focus-editor': editorFocusedFlg,
         'unfocus-editor input-border': !editorFocusedFlg,
@@ -112,6 +108,7 @@ onMounted(() => {
         :options="{
           placeholder: props.placeholder
         }"
+        @update:content="extractMentions"
         v-model:content="val"
         @focus="editorFocusedFlg = true"
         @blur="editorFocusedFlg = false"

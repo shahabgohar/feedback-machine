@@ -24,6 +24,6 @@ Route::get('/master', [MasterController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
-    Route::apiResource('comments', CommentController::class);
-    Route::apiResource('feedbacks', FeedbackController::class);
+    Route::apiResource('comments', CommentController::class)->only(['show', 'store']);
+    Route::apiResource('feedbacks', FeedbackController::class)->only(['index', 'store', 'show']);
 });

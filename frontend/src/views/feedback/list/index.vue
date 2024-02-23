@@ -51,7 +51,7 @@ main()
       <DataTable
         :value="feedbacks"
         :loading="loading"
-        tableStyle="min-width: 50rem"
+        tableStyle="min-width: 90vw"
         :rows="10"
         paginator
         :rowsPerPageOptions="[5, 10, 20, 50]"

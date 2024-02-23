@@ -66,36 +66,45 @@ const submitFeedback = async () => {
 }
 </script>
 <template>
-  <main class="w-full flex justify-center items-center h-screen">
-    <div class="container flex flex-col items-center justify-center">
-      <div class="max-w-[500px] w-full text-center flex flex-col gap-4">
-        <div class="font-medium text-3xl">Feedback Submission</div>
-        <BaseInput
-          v-model="feedbackForm.title"
-          :icon="'MdEmailOutlined'"
-          :placeholder="'Title'"
-          :type="'text'"
-          :errors="v.title"
-        ></BaseInput>
-        <RichTextEditor
-          v-model="feedbackForm.description"
-          :icon="'MdEmailOutlined'"
-          :placeholder="'Description'"
-          :type="'text'"
-          :errors="v.description"
-        ></RichTextEditor>
-        <SelectOption
-          v-model="selectOptionComputed"
-          :errors="v.category"
-          :options="categoryList"
-          :optionLabel="'label'"
-          :optionValue="'value'"
-        ></SelectOption>
-
-        <Button class="btn btn-primary" type="submit" @click="submitFeedback">
-          Submit Feedback
-        </Button>
-        <Button label="Cancel" @click="router.go(-1)"></Button>
+  <main class="w-full flex justify-center items-center">
+    <div class="container flex flex-col items-start justify-start">
+      <div class="w-full text-start flex flex-col gap-4 px-4">
+        <div class="font-medium text-3xl mb-4">Feedback Submission</div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2 md:col-span-1">
+            <BaseInput
+              v-model="feedbackForm.title"
+              :icon="'MdEmailOutlined'"
+              :placeholder="'Title'"
+              :type="'text'"
+              :errors="v.title"
+            ></BaseInput>
+          </div>
+          <div class="col-span-2 md:col-span-1">
+            <SelectOption
+              v-model="selectOptionComputed"
+              :errors="v.category"
+              :options="categoryList"
+              :optionLabel="'label'"
+              :optionValue="'value'"
+            ></SelectOption>
+          </div>
+          <div class="col-span-2">
+            <RichTextEditor
+              v-model="feedbackForm.description"
+              :icon="'MdEmailOutlined'"
+              :placeholder="'Description'"
+              :type="'text'"
+              :errors="v.description"
+            ></RichTextEditor>
+          </div>
+          <div class="col-span-2 flex flex-col-reverse sm:flex-row sm:justify-end gap-2 sm:gap-4">
+            <Button label="Cancel" severity="secondary" @click="router.go(-1)"></Button>
+            <Button class="btn btn-primary" type="submit" @click="submitFeedback">
+              Submit Feedback
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   </main>

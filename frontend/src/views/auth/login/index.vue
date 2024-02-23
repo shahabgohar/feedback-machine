@@ -8,6 +8,7 @@ import { LoginForm } from '../types'
 import { ROUTE } from '@/router/constants'
 import { useRouter } from 'vue-router'
 import { useToast } from 'primevue/usetoast'
+import Button from 'primevue/button'
 
 const loginForm: Ref<LoginForm> = ref({
   email: '',
@@ -53,8 +54,10 @@ const loginUser = async () => {
           :type="'password'"
           :errors="v.password"
         ></BaseInput>
-        <button class="btn btn-primary" type="submit" @click="loginUser">Login</button>
+
+        <Button class="w-full" @click="loginUser" label="Login"></Button>
       </div>
     </div>
   </main>
 </template>
+<style lang="scss" src="../index.scss"></style>

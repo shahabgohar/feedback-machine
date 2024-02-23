@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import InputText from 'primevue/inputtext'
 
 enum InputType {
   email = 'email',
@@ -32,18 +33,14 @@ const modelValue = computed({
 })
 </script>
 <template>
-  <div class="">
+  <div class="w-full">
     <label
-      class="input input-bordered flex items-center gap-2"
+      class="flex items-center gap-2"
       :class="{
         ' input-error': props.errors?.$errors.length
       }"
     >
-      <slot name="icon">
-        <v-icon v-if="props.icon" :name="props.icon"></v-icon>
-      </slot>
-
-      <input
+      <InputText
         v-model="modelValue"
         :type="props.type"
         class="grow"

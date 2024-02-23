@@ -48,4 +48,5 @@ export interface FeedbackResponse {
 export interface CommentCreateProps {
   content: string
   feedback_id: string
+  mentioned_users: Array<string>
 }

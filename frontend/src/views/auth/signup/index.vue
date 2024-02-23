@@ -6,6 +6,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useAuthStore } from '../store.ts'
 import { useRouter } from 'vue-router'
 import { ROUTE } from '@/router/constants'
+import Button from 'primevue/button'
 
 const signupForm = ref({
   email: '',
@@ -34,7 +35,7 @@ const signinUser = async () => {
 <template>
   <main class="w-full flex justify-center items-center mt-[10vh] px-5">
     <div class="container flex flex-col items-center justify-center">
-      <div class="max-w-[500px] w-full text-center flex flex-col gap-4">
+      <div class="max-w-[500px] w-full text-center items-center justify-center flex flex-col gap-4">
         <div class="font-medium text-3xl">Signup</div>
         <BaseInput
           v-model="signupForm.name"
@@ -64,8 +65,10 @@ const signinUser = async () => {
           :type="'password'"
           :errors="v.password_confirmation"
         ></BaseInput>
-        <button class="btn btn-primary" type="submit" @click="signinUser">Signup</button>
+
+        <Button class="w-full" label="Signup" @click="signinUser"></Button>
       </div>
     </div>
   </main>
 </template>
+<style lang="scss" src="../index.scss"></style>
