@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $user = \App\Models\User::factory()
             ->create([
                 'name' => 'shahab',
-                'email' => 'shahab.developer.work@gmail.com',
+                'email' => 'developer@developer.com',
                 'password' => Hash::make('12345678'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now()
@@ -38,11 +38,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Feedback::factory()
             ->has(
                 \App\Models\Comment::factory()
-                    // ->state(function ($attributes, Feedback $feedback) use ($user, $anotherUser) {
-                    //     return [
-                    //         'feedback_id' => $feedback->id,
-                    //     ];
-                    // })
                     ->sequence(
                         ['user_id' => $user->id],
                         ['user_id' => $anotherUser->id]
