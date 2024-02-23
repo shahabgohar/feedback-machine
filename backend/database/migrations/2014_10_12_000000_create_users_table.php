@@ -27,12 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('comments', function ($table) {
-            $table->dropColumn('user_id');
-        });
-        Schema::table('feedbacks', function ($table) {
-            $table->dropColumn('user_id');
-        });
         Schema::dropIfExists('users');
     }
 };
