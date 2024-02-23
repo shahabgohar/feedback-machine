@@ -15,7 +15,7 @@ export const rules = computed(() => {
       minLength: helpers.withMessage('Password must consist of minimum 8 characters', minLength(8))
     },
     password_confirmation: {
-      required: helpers.withMessage('Email is required.', required),
+      required: helpers.withMessage('Password confirm is required.', required),
       sameAsPassword: {
         $validator: (value: any, siblings: any) => {
           return value === siblings.password
