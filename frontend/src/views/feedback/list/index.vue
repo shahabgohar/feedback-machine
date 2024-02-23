@@ -46,8 +46,8 @@ main()
 </script>
 
 <template>
-  <div class="h-screen w-full flex items-center justify-start mt-[50px] flex-col">
-    <div class="card shadow-lg">
+  <div class="min-h-[calc(100vh-80px)] w-full flex items-center justify-start mt-[50px] flex-col">
+    <div class="card shadow-lg rounded-sm pb-4">
       <DataTable
         :value="feedbacks"
         :loading="loading"

@@ -51,6 +51,16 @@ router.beforeEach((to, from, next) => {
   document.title = 'Feedback Machine'
   const authRequired = !to.matched.some((record) => record.meta.public)
   const loggedIn = localStorage.getItem('accessToken')
+  if (to.name === ROUTE.LOGIN || to.name === ROUTE.SIGNUP) {
+    document.body.classList.add('auth')
+  } else {
+    document.body.classList.remove('auth')
+  }
+
+  if (to.name === ROUTE.FEEDBACK.LIST) {
+    document.body.classList.add('dashboard')
+  }
+
   if (authRequired && !loggedIn) {
     next({
       name: ROUTE.LOGIN,

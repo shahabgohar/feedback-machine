@@ -66,9 +66,9 @@ const submitFeedback = async () => {
 }
 </script>
 <template>
-  <main class="w-full flex justify-center items-center">
+  <main class="w-full flex justify-center items-center min-h-[calc(100vh-78px)]">
     <div class="container flex flex-col items-start justify-start">
-      <div class="w-full text-start flex flex-col gap-4 px-4">
+      <div class="w-full text-start flex flex-col gap-4 px-4 mt-4">
         <div class="font-medium text-3xl mb-4">Feedback Submission</div>
         <div class="grid grid-cols-2 gap-4">
           <div class="col-span-2 md:col-span-1">

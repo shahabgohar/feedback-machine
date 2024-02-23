@@ -39,7 +39,7 @@ const loginUser = async () => {
   <main class="w-full flex justify-center items-center mt-[10vh] px-5">
     <div class="container flex flex-col items-center justify-center">
       <div class="max-w-[500px] w-full text-center flex flex-col gap-4">
-        <div class="font-medium text-3xl">Login</div>
+        <div class="font-medium text-3xl text-white">Login</div>
         <BaseInput
           v-model="loginForm.email"
           :icon="'MdEmailOutlined'"
@@ -60,4 +60,3 @@ const loginUser = async () => {
     </div>
   </main>
 </template>
-<style lang="scss" src="../index.scss"></style>

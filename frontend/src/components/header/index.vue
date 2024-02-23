@@ -39,7 +39,7 @@ const redirectToHomePage = () => {
 }
 </script>
 <template>
-  <div class="w-full flex justify-between items-center p-5 bg-white">
+  <div class="w-full flex justify-between items-center p-4 bg-white border-b-[1px] shadow-md">
     <div class="text-xl cursor-pointer" @click="redirectToHomePage">Feedback Machine</div>
     <template v-if="authStore.isLoggedIn">
       <Button label="Logout" icon="pi pi-sign-out" severity="danger" @click="logoutUser"></Button>

@@ -148,6 +148,7 @@ const extractMentions = () => {
 }
 
 :deep(.editor) {
+  background-color: white;
   .mention {
     padding: 2px;
     background-color: chartreuse;

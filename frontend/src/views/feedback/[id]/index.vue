@@ -49,10 +49,10 @@ const storeComment = async () => {
 main()
 </script>
 <template>
-  <div class="">
+  <div class="min-h-[calc(100vh-78px)]">
     <div class="px-10 flex flex-col gap-5">
       <!-- title -->
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4 mt-4">
         <Button icon="pi pi-arrow-left" @click="router.go(-1)"></Button>
         <div class="flex justify-between">
           <div class="">
@@ -89,15 +89,17 @@ main()
             <Button label="Submit" icon="pi pi-plus" @click="storeComment"></Button>
           </div>
         </div>
-        <div
-          class="border-2 border-black border-dashed p-2 ql-editor"
-          v-for="(comment, index) in feedback.comments"
-          :key="index"
-        >
-          <div class="py-2" v-html="comment.content"></div>
-          <div class="border-t-2 border-dashed text-gray-400 flex justify-between">
-            <div class="">commented by: {{ comment.user?.name }}</div>
-            <div class="">created at: {{ comment.created_at }}</div>
+        <div class="pb-5 flex flex-col gap-5">
+          <div
+            class="border-2 border-black border-dashed p-2 ql-editor"
+            v-for="(comment, index) in feedback.comments"
+            :key="index"
+          >
+            <div class="py-2" v-html="comment.content"></div>
+            <div class="border-t-2 border-dashed text-gray-400 flex justify-between">
+              <div class="">commented by: {{ comment.user?.name }}</div>
+              <div class="">created at: {{ comment.created_at }}</div>
+            </div>
           </div>
         </div>
         <div
