@@ -15,7 +15,7 @@
 - please setup database in your system, create a database and enter credentials in .env
 - run php artisan migrate to create tables
 - run php artisan db:seed to seed database with dummy data
-- default login credentials are email: test@test.com , password:12345678
+- default login credentials are email: developer@developer.com , password:12345678
 - run php artisan serve (the default address will be http://127.0.0.1:8000)
 - now open another terminal and cd to frontend
 - run npm install
