@@ -5,7 +5,8 @@ import { ikonicApi } from '@/api'
 export const useGlobalStore = defineStore('global', {
   state: () => {
     return {
-      feedbackCategories: []
+      feedbackCategories: [],
+      requestProcessingFlg: false
     }
   },
   actions: {

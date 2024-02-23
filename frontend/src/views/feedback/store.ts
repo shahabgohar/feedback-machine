@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ikonicApi } from '@/api'
 import type { Feedback, FeedbackListResponse, FeedbackResponse, CommentCreateProps } from './types'
 import type { Paginate, User } from '@/types'
+import { useGlobalStore } from '@/stores/global'
 export const useFeedbackStore = defineStore('feedback', {
   state: () => {
     return {
@@ -15,7 +16,9 @@ export const useFeedbackStore = defineStore('feedback', {
   // state: () => ({ count: 0 })
   actions: {
     async addFeedback(data: Feedback) {
+      const globalStore = useGlobalStore()
       try {
+        globalStore.requestProcessingFlg = true
         const response: any = await ikonicApi({
           url: '/api/feedbacks',
           method: 'post',
@@ -23,7 +26,11 @@ export const useFeedbackStore = defineStore('feedback', {
         })
 
         console.log('response ', response)
-      } catch {}
+      } catch (error) {
+        console.log('error ', error)
+      } finally {
+        globalStore.requestProcessingFlg = false
+      }
     },
     async getAllFeedbacks() {
       try {
@@ -35,26 +42,33 @@ export const useFeedbackStore = defineStore('feedback', {
           this.feedbacks = response.data.feedbacks
           // this.feedbackPagination = response.data.paginate
         }
-        console.log('response ', response)
-      } catch {}
+      } catch (error) {
+        console.log('error ', error)
+      }
     },
     async fetchFeedback(id: string) {
+      const globalStore = useGlobalStore()
       try {
+        globalStore.requestProcessingFlg = true
         const response: FeedbackResponse = await ikonicApi({
           url: `/api/feedbacks/${id}`,
           method: 'get'
         })
 
-        console.log('response ', response)
         if (response.data) {
           this.feedback = response.data.feedback
           this.users = response.data.users
         }
-        console.log('response ', response)
-      } catch {}
+      } catch (error) {
+        console.log('error', error)
+      } finally {
+        globalStore.requestProcessingFlg = false
+      }
     },
     async addComment(data: CommentCreateProps) {
+      const globalStore = useGlobalStore()
       try {
+        globalStore.requestProcessingFlg = true
         const response: any = await ikonicApi({
           url: '/api/comments',
           method: 'post',
@@ -63,13 +77,11 @@ export const useFeedbackStore = defineStore('feedback', {
         if (response.data.comment) {
           this.feedback.comments?.unshift(response.data.comment)
         }
-        console.log('response comment creation ', response)
-        // if (response.data) {
-        //   this.feedbacks = response.data.feedbacks
-        //   this.feedbackPagination = response.data.paginate
-        // }
-        console.log('response ', response)
-      } catch {}
+      } catch (error) {
+        console.log('error', error)
+      } finally {
+        globalStore.requestProcessingFlg = false
+      }
     }
   },
   getters: {

@@ -8,7 +8,6 @@ export const ikonicApi = axios.create({
 
 ikonicApi.defaults.withCredentials = true
 ikonicApi.defaults.withXSRFToken = true
-
 ikonicApi.interceptors.request.use(
   async (config) => {
     config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken') || ''}`
